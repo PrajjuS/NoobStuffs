@@ -18,6 +18,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+
 class TextEscape:
     def markdown_escape(text: str):
         text = text.replace("*", "\\*")

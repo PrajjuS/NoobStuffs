@@ -18,11 +18,12 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-""" Pasty Library"""
+"""Pasty Library"""
 
 import requests
 
 PASTE_URL = "https://pasty.lus.pm"
+
 
 def paste_content(content: str):
     data = {
@@ -35,6 +36,7 @@ def paste_content(content: str):
         "raw": f"{PASTE_URL}/{data['id']}/raw",
         "modificationToken": data["modificationToken"],
     }
+
 
 def get_content(paste_id: str):
     re = requests.get(url=f"{PASTE_URL}/api/v2/pastes/{paste_id}")
