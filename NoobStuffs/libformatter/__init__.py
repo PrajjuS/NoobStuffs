@@ -22,6 +22,7 @@
 
 from .escape import TextEscape
 
+
 class HTML:
     def bold(text: str):
         return f"<b>{TextEscape.html_escape(text)}</b>"
@@ -75,6 +76,7 @@ class HTML:
     def invisible_link(link: str):
         return f"<a href=f'{TextEscape.html_escape(link)}'>\u2063</a>"
 
+
 class MARKDOWN:
     def bold(text: str):
         return f"*{TextEscape.markdown_escape(text)}*"
@@ -120,7 +122,9 @@ class MARKDOWN:
             raise ValueError("Invalid size, use sizes between 1 to 6")
 
     def hyperlink(text: str, link: str):
-        return f"[{TextEscape.markdown_escape(text)}]({TextEscape.markdown_escape(link)})"
+        return (
+            f"[{TextEscape.markdown_escape(text)}]({TextEscape.markdown_escape(link)})"
+        )
 
     def mention(text: str, uid: int):
         return f"[{TextEscape.markdown_escape(text)}](tg://user?id={uid})"

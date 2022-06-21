@@ -26,6 +26,7 @@ STREAM_FORMAT = "[%(levelname)s] - %(name)s: %(message)s"
 LOG_FORMAT = "[%(levelname)s] [%(asctime)s] - %(name)s: %(message)s"
 VERBOSE_FORMAT = "[%(levelname)s] [%(asctime)s] [%(filename)s %(lineno)d] %(funcName)s - %(name)s: %(message)s"
 
+
 def setup_logging(name: str, verbose: bool = False):
     if verbose:
         stream_formatter = logging.Formatter(STREAM_FORMAT)

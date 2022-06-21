@@ -21,11 +21,13 @@
 """Date Time Library"""
 
 import datetime
+
 import pytz
 
 TIME_FORMAT = "%H:%M:%S"
 DATE_FORMAT = "%Y-%m-%d"
 DAY_FORMAT = "%A"
+
 
 def dtnow(tzinfo: str = "Asia/Kolkata"):
     dt = datetime.datetime.now(pytz.timezone(tzinfo))
@@ -38,6 +40,7 @@ def dtnow(tzinfo: str = "Asia/Kolkata"):
         "day": DAY,
     }
 
+
 def fromtimestamp(timestamp: int, tzinfo: int):
     dt = datetime.datetime.fromtimestamp(timestamp, tzinfo)
     TIME = dt.strftime(TIME_FORMAT)
@@ -48,6 +51,7 @@ def fromtimestamp(timestamp: int, tzinfo: int):
         "date": DATE,
         "day": DAY,
     }
+
 
 def fromdatetime(date_time: str, dtformat: str):
     dt = datetime.datetime.strptime(date_time, dtformat)
