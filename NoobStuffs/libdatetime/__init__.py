@@ -21,6 +21,7 @@
 """Date Time Library"""
 
 import datetime
+from typing import Optional
 
 import pytz
 
@@ -41,8 +42,11 @@ def dtnow(tzinfo: str = "Asia/Kolkata"):
     }
 
 
-def fromtimestamp(timestamp: int, tzinfo: int):
-    dt = datetime.datetime.fromtimestamp(timestamp, tzinfo)
+def fromtimestamp(timestamp: int, tzinfo: Optional[str] = None):
+    if tzinfo == None:
+        dt = datetime.datetime.fromtimestamp(timestamp)
+    else:
+        dt = datetime.datetime.fromtimestamp(timestamp, pytz.timezone(tzinfo))
     TIME = dt.strftime(TIME_FORMAT)
     DATE = dt.strftime(DATE_FORMAT)
     DAY = dt.strftime(DAY_FORMAT)
