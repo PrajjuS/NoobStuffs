@@ -68,13 +68,13 @@ class HTML:
             raise ValueError("Invalid size, use sizes between 1 to 6")
 
     def hyperlink(text: str, link: str):
-        return f"<a href=f'{TextEscape.html_escape(link)}'>{TextEscape.html_escape(text)}</a>"
+        return f"<a href='{TextEscape.html_escape(link)}'>{TextEscape.html_escape(text)}</a>"
 
     def mention(text: str, uid: int):
-        return f"<a href=f'tg://user?id={uid}'>{TextEscape.html_escape(text)}</a>"
+        return f"<a href='tg://user?id={uid}'>{TextEscape.html_escape(text)}</a>"
 
     def invisible_link(link: str):
-        return f"<a href=f'{TextEscape.html_escape(link)}'>\u2063</a>"
+        return f"<a href='{TextEscape.html_escape(link)}'>\u2063</a>"
 
 
 class MARKDOWN:
