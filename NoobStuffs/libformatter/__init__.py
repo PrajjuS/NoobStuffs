@@ -20,8 +20,8 @@
 
 """Text Formatter Library"""
 
+from typing import Optional
 from .escape import TextEscape
-
 
 class HTML:
     def bold(text: str):
@@ -75,7 +75,11 @@ class HTML:
 
     def invisible_link(link: str):
         return f"<a href='{TextEscape.html_escape(link)}'>\u2063</a>"
-
+    
+    def colon_item(key: str, value: str, mono_value: Optional[bool] = True):
+        text = f"<b>{key}:</b> "
+        text += f"<code>{value}</code>" if mono_value else f"{value}"
+        return text
 
 class MARKDOWN:
     def bold(text: str):
@@ -131,3 +135,8 @@ class MARKDOWN:
 
     def invisible_link(link: str):
         return f"[\u2063]({TextEscape.html_escape(link)})"
+
+    def colon_item(key: str, value: str, mono_value: Optional[bool] = True):
+        text = f"*{key}:* "
+        text += f"`{value}`" if mono_value else f"{value}"
+        return text
