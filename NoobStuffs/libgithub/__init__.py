@@ -18,9 +18,9 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-from github import Github, GithubException, InputGitAuthor, UnknownObjectException
-
 from logging import getLogger
+
+from github import Github, GithubException, InputGitAuthor, UnknownObjectException
 
 LOGGER = getLogger("GithubHelper")
 
@@ -48,7 +48,9 @@ class GithubHelper:
             LOGGER.error(f"Error while forking repo {repo}: {e.data}")
 
     def commit_changes(self, repo: str, content: str, message: str, branch: str):
-        LOGGER.info(f"Committing changes in repo: repo={repo}, content={content}, message={message}, branch={branch}")
+        LOGGER.info(
+            f"Committing changes in repo: repo={repo}, content={content}, message={message}, branch={branch}",
+        )
         try:
             r = self.g.get_repo(full_name_or_id=repo)
             contents = r.get_contents(content)
