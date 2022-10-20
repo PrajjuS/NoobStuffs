@@ -47,17 +47,42 @@ class GithubHelper:
         except GithubException as e:
             LOGGER.error(f"Error while forking repo {repo}: {e.data}")
 
-    def commit_changes(self, repo: str, content: str, message: str, branch: str):
+    def empty_commit(self, repo: str, path: str, commit_message: str, branch: str):
         LOGGER.info(
-            f"Committing changes in repo: repo={repo}, content={content}, message={message}, branch={branch}",
+            f"Committing changes in repo: repo={repo}, message={commit_message}, branch={branch}",
         )
         try:
             r = self.g.get_repo(full_name_or_id=repo)
-            contents = r.get_contents(content)
+            contents = r.get_contents(path)
             return r.update_file(
                 path=contents.path,
-                message=message,
+                message=commit_message,
                 content=contents.decoded_content.decode(),
+                sha=contents.sha,
+                branch=branch,
+                committer=self.committer,
+            )
+        except GithubException as e:
+            LOGGER.error(f"Error while committing changes in repo {repo}: {e.data}")
+
+    def commit_changes(
+        self,
+        repo: str,
+        path: str,
+        commit_message: str,
+        content: str,
+        branch: str,
+    ):
+        LOGGER.info(
+            f"Committing changes in repo: repo={repo}, file={path} content={content} message={commit_message}, branch={branch}",
+        )
+        try:
+            r = self.g.get_repo(full_name_or_id=repo)
+            contents = r.get_contents(path)
+            return r.update_file(
+                path=contents.path,
+                message=commit_message,
+                content=content,
                 sha=contents.sha,
                 branch=branch,
                 committer=self.committer,
