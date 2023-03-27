@@ -19,7 +19,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.28.0"
-pytz = "^2022.1"
+pytz = ">=2022.1,<2024.0"
 PyGithub = "^1.55"
 telegraph = "^2.2.0"
 
