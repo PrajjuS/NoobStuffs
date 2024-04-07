@@ -1,4 +1,3 @@
-import asyncio
 from typing import BinaryIO
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -26,27 +25,21 @@ class TelegramLogBot:
         self.__button_index = -1
         self.__buttons.clear()
 
-    def log_msg(self, message: str, use_buttons: bool = False):
-        loop = asyncio.get_event_loop()
+    async def log_msg(self, message: str, use_buttons: bool = False):
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
-        loop.run_until_complete(
-            self.__app.bot.send_message(
-                text=message,
-                chat_id=self.__chat_id,
-                reply_markup=reply_markup,
-                parse_mode=self.__parse_mode,
-            ),
+        await self.__app.bot.send_message(
+            text=message,
+            chat_id=self.__chat_id,
+            reply_markup=reply_markup,
+            parse_mode=self.__parse_mode,
         )
 
-    def log_img(self, image: BinaryIO, caption: str, use_buttons: bool = False):
-        loop = asyncio.get_event_loop()
+    async def log_img(self, image: BinaryIO, caption: str, use_buttons: bool = False):
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
-        loop.run_until_complete(
-            self.__app.bot.send_photo(
-                photo=image,
-                chat_id=self.__chat_id,
-                caption=caption,
-                reply_markup=reply_markup,
-                parse_mode=self.__parse_mode,
-            ),
+        await self.__app.bot.send_photo(
+            photo=image,
+            chat_id=self.__chat_id,
+            caption=caption,
+            reply_markup=reply_markup,
+            parse_mode=self.__parse_mode,
         )
