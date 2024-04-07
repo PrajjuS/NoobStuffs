@@ -30,8 +30,13 @@ LOGGER = getLogger("TelegraphHelper")
 
 
 class TelegraphHelper:
-    def __init__(self, author_name: str, author_url: str):
-        self.telegraph = Telegraph()
+    def __init__(
+        self,
+        author_name: str,
+        author_url: str,
+        domain: str = "telegra.ph",
+    ):
+        self.telegraph = Telegraph(domain=domain)
         self.short_name = "".join(choices(population=ascii_letters, k=5))
         self.author_name = author_name
         self.author_url = author_url
