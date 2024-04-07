@@ -24,6 +24,10 @@ class TelegramLogBot:
         else:
             self.__buttons[self.__button_index].append(button)
 
+    def reset_buttons(self):
+        self.__button_index = -1
+        self.__buttons.clear()
+
     def log_msg(self, message: str, use_buttons: bool = False):
         loop = asyncio.get_event_loop()
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
