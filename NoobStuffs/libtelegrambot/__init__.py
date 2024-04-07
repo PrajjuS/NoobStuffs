@@ -15,8 +15,6 @@ class TelegramLogBot:
         self.__button_index = -1
 
     def build_button(self, text: str, link: str, newline: bool = False):
-        print(self.__button_index)
-        print(self.__buttons)
         button = InlineKeyboardButton(text=text, url=link)
         if newline or len(self.__buttons) == 0:
             self.__button_index += 1
