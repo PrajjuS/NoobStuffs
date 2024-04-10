@@ -6,10 +6,17 @@ from telegram.ext import ApplicationBuilder
 
 
 class TelegramLogBot:
-    def __init__(self, token: str, chat_id: int, parse_mode: ParseMode):
+    def __init__(
+        self,
+        token: str,
+        chat_id: int,
+        parse_mode: ParseMode,
+        disable_web_page_preview: bool,
+    ):
         self.__app = ApplicationBuilder().token(token).build()
         self.__chat_id = chat_id
         self.__parse_mode = parse_mode
+        self.__disable_web_page_preview = disable_web_page_preview
         self.__buttons = []
         self.__button_index = -1
 
@@ -32,6 +39,7 @@ class TelegramLogBot:
             chat_id=self.__chat_id,
             reply_markup=reply_markup,
             parse_mode=self.__parse_mode,
+            disable_web_page_preview=self.__disable_web_page_preview,
         )
 
     async def log_img(self, image: BinaryIO, caption: str, use_buttons: bool = False):
@@ -42,4 +50,5 @@ class TelegramLogBot:
             caption=caption,
             reply_markup=reply_markup,
             parse_mode=self.__parse_mode,
+            disable_web_page_preview=self.__disable_web_page_preview,
         )
