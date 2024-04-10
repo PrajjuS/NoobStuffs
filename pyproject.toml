@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "NoobStuffs"
-version = "2.0.3"
+version = "2.0.4"
 description = "Python Library for PrajjuS Projects"
 license = "GPL-3.0"
 authors = ["PrajjuS <theprajjus@gmail.com>"]
