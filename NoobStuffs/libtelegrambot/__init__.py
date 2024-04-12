@@ -13,7 +13,7 @@ class TelegramLogBot:
         parse_mode: ParseMode,
         disable_web_page_preview: bool,
     ):
-        self.__app = ApplicationBuilder().token(token).build()
+        self.app = ApplicationBuilder().token(token).build()
         self.__chat_id = chat_id
         self.__parse_mode = parse_mode
         self.__disable_web_page_preview = disable_web_page_preview
@@ -34,7 +34,7 @@ class TelegramLogBot:
 
     async def log_msg(self, message: str, use_buttons: bool = False):
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
-        await self.__app.bot.send_message(
+        await self.app.bot.send_message(
             text=message,
             chat_id=self.__chat_id,
             reply_markup=reply_markup,
@@ -44,7 +44,7 @@ class TelegramLogBot:
 
     async def log_img(self, image: BinaryIO, caption: str, use_buttons: bool = False):
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
-        await self.__app.bot.send_photo(
+        await self.app.bot.send_photo(
             photo=image,
             chat_id=self.__chat_id,
             caption=caption,
