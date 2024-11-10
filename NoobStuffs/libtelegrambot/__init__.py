@@ -42,7 +42,13 @@ class TelegramLogBot:
             disable_web_page_preview=self.__disable_web_page_preview,
         )
 
-    async def log_img(self, image: BinaryIO, caption: str, use_buttons: bool = False):
+    async def log_img(
+        self,
+        image: BinaryIO,
+        caption: str,
+        filename: str,
+        use_buttons: bool = False,
+    ):
         reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
         await self.app.bot.send_photo(
             photo=image,
@@ -50,7 +56,7 @@ class TelegramLogBot:
             caption=caption,
             reply_markup=reply_markup,
             parse_mode=self.__parse_mode,
-            disable_web_page_preview=self.__disable_web_page_preview,
+            filename=filename,
         )
 
     async def log_doc(
