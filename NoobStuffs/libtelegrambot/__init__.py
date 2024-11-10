@@ -52,3 +52,20 @@ class TelegramLogBot:
             parse_mode=self.__parse_mode,
             disable_web_page_preview=self.__disable_web_page_preview,
         )
+
+    async def log_doc(
+        self,
+        document: BinaryIO,
+        caption: str,
+        filename: str,
+        use_buttons: bool = False,
+    ):
+        reply_markup = InlineKeyboardMarkup(self.__buttons) if use_buttons else None
+        await self.app.bot.send_document(
+            document=document,
+            chat_id=self.__chat_id,
+            caption=caption,
+            reply_markup=reply_markup,
+            parse_mode=self.__parse_mode,
+            filename=filename,
+        )
