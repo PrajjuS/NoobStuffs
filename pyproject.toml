@@ -23,6 +23,7 @@ pytz = ">=2022.1,<2025.0"
 PyGithub = ">=1.55,<3.0"
 telegraph = "^2.2.0"
 python-telegram-bot = "^21.0.1"
+pyyaml = "^6.0.2"
 
 [tool.poetry.dev-dependencies]
 
