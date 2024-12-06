@@ -12,7 +12,7 @@ def getConfig(
     default: Optional[Union[bool, int, str]] = None,
 ):
     res = getenv(name, default)
-    if is_required and (not res or (isinstance(res, str) and res.strip() == "")):
+    if is_required and (res is None or (isinstance(res, str) and res.strip() == "")):
         LOGGER.error(f"Config {name} not found, Exiting..")
         exit()
     if return_type == "str" or return_type == None:
